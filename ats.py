@@ -126,11 +126,11 @@ class ATS(EClient, EWrapper):
             # If the new price is more than 5% higher than our previous price point.
             if (positions[symbol]["LAST"] * 1.05) < price:
                 order.action = "BUY"
-                self.placeOrder(app.nextId(), positions[symbol]["Contract"], order)
+                self.placeOrder(self.nextId(), positions[symbol]["Contract"], order)
             # If the new price is less than 6% of our previous price point
             elif (positions[symbol]["LAST"] * 0.94) > price and positions[symbol]["Position"] >= 5:
                 order.action = "SELL"
-                self.placeOrder(app.nextId(), positions[symbol]["Contract"], order)
+                self.placeOrder(self.nextId(), positions[symbol]["Contract"], order)
 
             # Assign new LAST price to contract
             positions[symbol]["LAST"] = price
