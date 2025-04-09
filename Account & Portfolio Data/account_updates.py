@@ -40,7 +40,10 @@ host = "localhost"
 port = 7497
 clientId = 0
 
+with open("nums.txt") as f:
+    account = f.read()
+
 # Creating, connecting and running app
-app = TestApp(account="{your account ID here}")
+app = TestApp(account=account)
 app.connect(host, port, clientId)
 app.run()
