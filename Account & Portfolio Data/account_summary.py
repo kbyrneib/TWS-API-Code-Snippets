@@ -7,6 +7,10 @@ class TestApp(EClient, EWrapper):
 
     def nextValidId(self, orderId):
         print(f"Next valid order ID is {orderId}")
+        self.start(orderId)
+
+    def start(self, orderId):
+        print("The app has started...")
 
     def error(self, reqId, errorTime, errorCode, errorString, advancedOrderRejectJson=""):
         print(errorCode, errorString)
