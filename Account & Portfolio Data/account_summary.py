@@ -1,5 +1,6 @@
 from ibapi.client import *
 from ibapi.wrapper import *
+from ibapi.account_summary_tags import *
 
 class TestApp(EClient, EWrapper):
     def __init__(self):
@@ -7,18 +8,35 @@ class TestApp(EClient, EWrapper):
 
     def nextValidId(self, orderId):
         print(f"Next valid order ID is {orderId}")
-        self.start(orderId)
+        self.orderId = orderId
+        self.start()
 
-    def start(self, orderId):
-        print("The app has started...")
+    def nextId(self):
+        self.orderId += 1
+        return self.orderId
+
+    def start(self):
+        # Request Account Summary
+        self.reqAccountSummary(self.nextId(), "All", AccountSummaryTags.AllTags)
+
+    def accountSummary(self, reqId, account, tag, value, currency):
+        print(reqId, account, tag, value, currency)
+
+    def accountSummaryEnd(self, reqId):
+        print("Account Summary Ended...")
+
+        # Request cancellation of subscription to account summary
+        self.cancelAccountSummary(reqId)
 
     def error(self, reqId, errorTime, errorCode, errorString, advancedOrderRejectJson=""):
         print(errorCode, errorString)
-  
+
+# Required args for connectivity
 host = "localhost"
 port = 7497
 clientId = 0
 
+# Creating, connecting and running app
 app = TestApp()
 app.connect(host, port, clientId)
 app.run()
