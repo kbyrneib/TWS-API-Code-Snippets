@@ -29,7 +29,7 @@ class TestApp(EClient, EWrapper):
         print(reqId, contractDetails)
 
     def bondContractDetails(self, reqId, contractDetails):
-        # Delivers bon contract data if it has been requested
+        # Delivers bond contract data if it has been requested
         pass
 
     def contractDetailsEnd(self, reqId):
