@@ -6,8 +6,6 @@ class TestApp(EClient, EWrapper):
     def __init__(self):
         EClient.__init__(self, wrapper=self)
 
-
-
     def nextValidId(self, orderId):
         print(f"Next valid order ID is {orderId}")
         self.orderId = orderId
