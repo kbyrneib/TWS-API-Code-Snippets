@@ -46,6 +46,9 @@ class TestApp(EClient, EWrapper):
     def historicalData(self, reqId, bar):
         print(reqId, bar)
 
+    def historicalDataEnd(self, reqId, start, end):
+        print(reqId, "All historical data returned from", start, "to", end)
+
     def error(self, reqId, errorTime, errorCode, errorString, advancedOrderRejectJson=""):
         print(errorCode, errorString)
 
