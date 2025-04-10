@@ -41,7 +41,7 @@ class TestApp(EClient, EWrapper):
         contract.secType = "STK"
         contract.exchange = "SMART"
         contract.currency = "USD"
-        self.reqHistoricalData(self.nextId(), contract, "", "45 Y", "1 M", "TRADES", 1, 1, False, [])
+        self.reqHistoricalData(self.nextId(), contract, "", "45 Y", "1 month", "TRADES", 1, 1, False, [])
 
     def historicalData(self, reqId, bar):
         print(reqId, bar)
