@@ -30,6 +30,7 @@ class TestApp(EClient, EWrapper):
 
     def histogramData(self, reqId, items):
         print(reqId, items)
+        self.cancelHistogramData(reqId)
 
     def error(self, reqId, errorTime, errorCode, errorString, advancedOrderRejectJson=""):
         print(errorCode, errorString)
