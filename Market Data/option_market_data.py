@@ -15,29 +15,16 @@ class TestApp(EClient, EWrapper):
         return self.orderId
 
     def start(self):
-        # Building a contract
+        # Building contract - identified conId via contract_details.py
         contract = Contract()
-        contract.symbol = "MSFT"
-        contract.secType = "OPT"
+        contract.conId = 733568280
         contract.exchange = "AMEX"
-        contract.currency = "USD"
-        contract.lastTradeDateOrContractMonth = "20250516"
-        contract.strike = 515.0
-        contract.right = "P"
-        contract.multiplier = 100
 
-        # Requesting contract details
-        self.reqContractDetails(self.nextId(), contract)
+        self.reqMktData(self.nextId(), contract, "", False, False, [])
 
-    def contractDetails(self, reqId, contractDetails):
-        print(reqId, contractDetails)
-
-    def bondContractDetails(self, reqId, contractDetails):
-        # Delivers bond contract data if it has been requested
-        pass
-
-    def contractDetailsEnd(self, reqId):
-        print(f"{reqId} : Received all contracts matching the request.")
+    def tickOptionComputation(self, reqId, tickType, tickAttrib, impliedVol, delta, optPrice, pvDividend, gamma, vega, theta, undPrice):
+        # This function receives option specific market data
+        print(reqId, tickType, tickAttrib, impliedVol, delta, optPrice, pvDividend, gamma, vega, theta, undPrice)
 
     def error(self, reqId, errorTime, errorCode, errorString, advancedOrderRejectJson=""):
         print(errorCode, errorString)
