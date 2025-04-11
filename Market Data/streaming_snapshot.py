@@ -1,5 +1,6 @@
 from ibapi.client import *
 from ibapi.wrapper import *
+from ibapi.ticktype import TickTypeEnum
 
 class TestApp(EClient, EWrapper):
     def __init__(self):
@@ -25,7 +26,7 @@ class TestApp(EClient, EWrapper):
 
     def tickPrice(self, reqId, tickType, price, attrib):
         # Lets just fiter for LAST price
-        if tickType == 4:
+        if TickTypeEnum.toStr(tickType) == "LAST":
             print(reqId, tickType, price, attrib)
 
     def tickSnapshotEnd(self, reqId):
