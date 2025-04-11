@@ -24,7 +24,7 @@ class TestApp(EClient, EWrapper):
         contract.currency = "USD"
 
         # Request historical ticks
-        self.reqHistoricalTicks(self.nextId(), contract, "20250410 10:40:00", "", 10, "TRADES", 1, True, [])
+        self.reqHistoricalTicks(self.nextId(), contract, "", "20250410 21:30:00", 10, "TRADES", 1, True, [])
 
     # Change function to historicalTicks for whatToShow = MIDPOINT
     # Change function to historicalTicksBidAsk for whatToShow = BID_ASK
