@@ -19,10 +19,11 @@ class TestApp(EClient, EWrapper):
         # Building a ScannerSubscription object
         scanner_sub = ScannerSubscription()
         scanner_sub.instrument = "STK"
-        scanner_sub.locationCode = "STK.NASDAQ"
+        scanner_sub.locationCode = "STK.US.MAJOR"
         scanner_sub.scanCode = "TOP_PERC_GAIN"
         filter_options = [
-            TagValue("priceAbove", "10")
+            TagValue("priceAbove", "50"),
+            TagValue("marketCapAbove1e6", "1000")
         ]
 
         # Requesting scanner using ScannerSubscription object
