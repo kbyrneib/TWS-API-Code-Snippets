@@ -1,6 +1,5 @@
 from ibapi.client import *
 from ibapi.wrapper import *
-from ibapi.tag_value import TagValue
 
 class TestApp(EClient, EWrapper):
     def __init__(self):

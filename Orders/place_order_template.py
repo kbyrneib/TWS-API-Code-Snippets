@@ -23,10 +23,10 @@ class TestApp(EClient, EWrapper):
         # Build order type here
         order = Order()
         # Fill in details of order
-
+        
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
-
+        
     def orderStatus(self, orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice):
         print("OrderStatus:", orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice)
 

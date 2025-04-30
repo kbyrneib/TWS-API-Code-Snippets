@@ -23,8 +23,10 @@ class TestApp(EClient, EWrapper):
         # Build Order
         order = Order()
         order.action = "BUY"
-        order.orderType = "MKT"
+        order.orderType = "STP LMT"
         order.totalQuantity = 1
+        order.auxPrice = 209.0
+        order.lmtPrice = 210.0
 
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
