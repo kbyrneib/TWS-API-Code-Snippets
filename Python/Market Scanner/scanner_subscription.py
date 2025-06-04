@@ -19,19 +19,19 @@ class TestApp(EClient, EWrapper):
         # Building a ScannerSubscription object
         scanner_sub = ScannerSubscription()
         scanner_sub.instrument = "STK"
-        scanner_sub.locationCode = "STK.US.MAJOR"
-        scanner_sub.scanCode = "TOP_PERC_GAIN"
+        scanner_sub.locationCode = "STK.US"
+        scanner_sub.scanCode = "MOST_ACTIVE"
+        scanner_sub.numberOfRows = 10
         filter_options = [
-            TagValue("priceAbove", "50"),
-            TagValue("marketCapAbove1e6", "1000")
+            # TagValue("priceAbove", "50"),
+            # TagValue("marketCapAbove1e6", "1000")
         ]
 
         # Requesting scanner using ScannerSubscription object
         self.reqScannerSubscription(self.nextId(), scanner_sub, [], filter_options)
 
     def scannerData(self, reqId, rank, contractDetails, distance, benchmark, projection, legsStr):
-        if rank < 10:
-            print(rank, contractDetails.contract.symbol)
+        print(rank, contractDetails.contract.symbol)
 
     def error(self, reqId, errorTime, errorCode, errorString, advancedOrderRejectJson=""):
         print(errorCode, errorString)
