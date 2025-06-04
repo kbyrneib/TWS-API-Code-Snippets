@@ -17,14 +17,8 @@ class TestApp(EClient, EWrapper):
     def start(self):
         # Building a contract
         contract = Contract()
-        contract.symbol = "MSFT"
-        contract.secType = "OPT"
-        contract.exchange = "AMEX"
-        contract.currency = "USD"
-        contract.lastTradeDateOrContractMonth = "20250516"
-        contract.strike = 515.0
-        contract.right = "P"
-        contract.multiplier = 100
+        contract.conId = 8314
+        contract.exchange = "SMART"
 
         # Requesting contract details
         self.reqContractDetails(self.nextId(), contract)
