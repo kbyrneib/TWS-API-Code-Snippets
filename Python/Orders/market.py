@@ -21,7 +21,7 @@ class TestApp(EClient, EWrapper):
         contract.exchange = "SMART"
         
         # Order Type: Market Order
-        # Explanation: Buy at the bid or sell at the ask, at the current price.
+        # Explanation: Buy (Sell) at the current ask (bid) price.
         # General Link: https://www.interactivebrokers.co.uk/en/trading/ordertypes.php?m=marketModal
         # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#market-order
         # Building the Order with required attributes
