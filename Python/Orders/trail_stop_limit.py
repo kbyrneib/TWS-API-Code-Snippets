@@ -20,22 +20,24 @@ class TestApp(EClient, EWrapper):
         contract.conId = 265598 # AAPL
         contract.exchange = "SMART"
         
-        # Order Type: Trailing Stop Order
-        # Explanation: A sell (buy) trailing stop order sets the stop price at a fixed amount below (above) the market price with an attached "trailing" amount.
-        # General Link: https://www.interactivebrokers.co.uk/en/trading/ordertypes.php?m=trailingModal
-        # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#trailing-stop-order
+        # Order Type: Trailing Stop Limit Order
+        # Explanation: A trailing stop but with an added limit price, calculated based on an offset from the trailing stop
+        # General Link: 
+        # API Link: 
         # Building the Order with required attributes
         order = Order()
         order.action = "BUY" # Identifies the side, BUY in this case
-        order.orderType = "TRAIL" # The order type (obviously)
+        order.orderType = "TRAIL LIMIT" # The order type (obviously)
         order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
+        order.trailStopPrice = 200.5 # Required - Trigger price beyond which trailing behavior will begin.
 
         # Specify one of:
         order.trailingPercent = 1.0 # Specifies the trailing amount as a percentage of the market price e.g. 0.50 = 0.50%
         # order.auxPrice = 1.0 # Specifies the trailing amount as an absolute value in units of the instruments currency e.g. 1.0 USD
         
-        # Not required
-        # order.trailStopPrice = 201.0 # Trigger price beyond which trailing behavior will begin. If no stop price value is supplied, this is set to UNSET_DOUBLE
+        # Specify one of:
+        order.lmtPriceOffset = 0.1 # Set by default in the TWS/IBG settings. This setting either needs to be changed in the Order Presets, the default value accepted, or the limit price offset sent from the API as in the example below.
+        # order.lmtPrice = 201.0
 
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
@@ -55,7 +57,7 @@ class TestApp(EClient, EWrapper):
 # Required args for connectivity
 host = "localhost"
 port = 7497
-clientId = 1
+clientId = 0
 
 # Creating, connecting and running app
 app = TestApp()
