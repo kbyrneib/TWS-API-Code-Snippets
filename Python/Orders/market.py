@@ -22,6 +22,8 @@ class TestApp(EClient, EWrapper):
         
         # Order Type: Market Order
         # Explanation: Buy at the bid or sell at the ask, at the current price.
+        # General Link: https://www.interactivebrokers.co.uk/en/trading/ordertypes.php?m=marketModal
+        # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#market-order
         # Building the Order with required attributes
         order = Order()
         order.action = "BUY" # Identifies the side, BUY in this case
