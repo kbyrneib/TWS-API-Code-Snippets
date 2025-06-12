@@ -20,18 +20,25 @@ class TestApp(EClient, EWrapper):
         contract.conId = 265598 # AAPL
         contract.exchange = "SMART"
         
-        # Build Order
+        # Order Type: Limit Order
+        # Explanation: Buy or sell at the specified price or better. Does not guarantee a fill.
+        # General Link: https://www.interactivebrokers.co.uk/en/trading/ordertypes.php?m=limitModal
+        # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#limit-order
+        # Building the Order with required attributes
         order = Order()
-        order.action = "SELL"
-        order.orderType = "LMT"
-        order.totalQuantity = 1
-        order.lmtPrice = 209.0
-
+        order.action = "BUY" # Identifies the side, BUY in this case
+        order.orderType = "LMT" # The order type (obviously)
+        order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
+        order.lmtPrice = 198.0 # The limit price that you will accept (or better)
+        
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
 
     def orderStatus(self, orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice):
         print(f"OrderStatus:, orderId: {orderId}, status: {status}, filled: {filled}, remaining: {remaining}, avgFillPrice: {avgFillPrice}, permId: {permId}, parentId: {parentId}, lastFillPrice: {lastFillPrice}, clientId: {clientId}, whyHeld: {whyHeld}, mktCapPrice: {mktCapPrice}\n")
+
+    def openOrder(self, orderId, contract, order, orderState):
+        print(f"OpenOrder, orderId: {orderId}, contract: {contract}, order: {order}, orderState: {orderState}")
 
     def execDetails(self, reqId, contract, execution):
         print(f"ExecDetails:, reqId: {reqId}, contract: {contract}, execution: {execution}\n")
