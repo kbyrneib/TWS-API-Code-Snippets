@@ -29,6 +29,7 @@ class TestApp(EClient, EWrapper):
         order.action = "BUY" # Identifies the side, BUY in this case
         order.orderType = "MKT" # The order type (obviously)
         order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
+        # order.tif = "OPG" # For Market-on-Open (MOO) orders, set TIF to OPG
         
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
