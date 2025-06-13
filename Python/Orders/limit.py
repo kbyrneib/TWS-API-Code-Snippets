@@ -30,6 +30,7 @@ class TestApp(EClient, EWrapper):
         order.orderType = "LMT" # The order type (obviously)
         order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
         order.lmtPrice = 198.0 # The limit price that you will accept (or better)
+        # order.tif = "OPG" # For Limit-on-Open (LOO) orders, set TIF to OPG
         
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
