@@ -26,10 +26,6 @@ class TestApp(EClient, EWrapper):
     def contractDetails(self, reqId, contractDetails):
         print(reqId, contractDetails)
 
-    def bondContractDetails(self, reqId, contractDetails):
-        # Delivers bond contract data if it has been requested
-        pass
-
     def contractDetailsEnd(self, reqId):
         print(f"{reqId} : Received all contracts matching the request.")
 

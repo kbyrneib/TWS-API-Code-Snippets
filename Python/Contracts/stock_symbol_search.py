@@ -16,7 +16,7 @@ class TestApp(EClient, EWrapper):
 
     def start(self):
         # Request matching stock symbols
-        self.reqMatchingSymbols(self.nextId(), "IBM")
+        self.reqMatchingSymbols(self.nextId(), "AAPL")
 
     def symbolSamples(self, reqId, contractDescriptions):
         # Loop through list of contract descriptions and print the contract object (Contract)
