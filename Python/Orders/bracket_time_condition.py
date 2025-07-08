@@ -35,35 +35,35 @@ class TestApp(EClient, EWrapper):
         # The parent order
         parent = Order()
         parent.orderId = self.nextId()
-        parent.action = "BUY" # Identifies the side
-        parent.orderType = "LMT" # The order type 
-        parent.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        parent.lmtPrice = 198.41 # The limit price that you will accept (or better)
-        parent.transmit = False # Specifies whether the order will be transmitted by TWS
+        parent.action = "BUY"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        parent.orderType = "LMT"  # Type of order such as Market, Limit, Stop, etc.
+        parent.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        parent.lmtPrice = 198.41  # Limit price for limit orders or stop-limit orders
+        parent.transmit = False  # If false, the order is created but not transmitted to market
 
         # Adding the Time Condition to the parent order of the bracket
-        parent.conditions = [timeCondition] # Adding the time condition to the parent order
-        parent.conditionsCancelOrder = True # The bracket will cancel if the time condition is met
+        parent.conditions = [timeCondition]  # List of conditions that must be met before the order becomes active
+        parent.conditionsCancelOrder = True  # If true, order is canceled when conditions become invalid after being active
 
         # The take profit order
         take_profit = Order()
         take_profit.orderId = parent.orderId + 1
-        take_profit.parentId = parent.orderId # ID of parent order
-        take_profit.action = "SELL" # Identifies the side
-        take_profit.orderType = "LMT" # The order type 
-        take_profit.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        take_profit.lmtPrice = parent.lmtPrice + 0.5 # The limit price that you will accept (or better)
-        take_profit.transmit = False # Specifies whether the order will be transmitted by TWS
-        
+        take_profit.parentId = parent.orderId  # ID of the parent order for bracket, trailing stop, or other attached orders
+        take_profit.action = "SELL"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        take_profit.orderType = "LMT"  # Type of order such as Market, Limit, Stop, etc.
+        take_profit.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        take_profit.lmtPrice = parent.lmtPrice + 0.5  # Limit price for limit orders or stop-limit orders
+        take_profit.transmit = False  # If false, the order is created but not transmitted to market
+
         # The stop loss order
         stop_loss = Order()
         stop_loss.orderId = parent.orderId + 2
-        stop_loss.parentId = parent.orderId # ID of parent order
-        stop_loss.action = "SELL" # Identifies the side
-        stop_loss.orderType = "STP" # The order type
-        stop_loss.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        stop_loss.auxPrice = parent.lmtPrice - 0.5 # The stop price - if attained/penetrated, a market order is submitted
-        stop_loss.transmit = True # Specifies whether the order will be transmitted by TWS
+        stop_loss.parentId = parent.orderId  # ID of the parent order for bracket, trailing stop, or other attached orders
+        stop_loss.action = "SELL"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        stop_loss.orderType = "STP"  # Type of order such as Market, Limit, Stop, etc.
+        stop_loss.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        stop_loss.auxPrice = parent.lmtPrice - 0.5  # Auxiliary price for stop orders, trailing stop orders, etc.
+        stop_loss.transmit = True  # If false, the order is created but not transmitted to market
 
         # Bundling the parent, take profit and stop loss orders together
         bracket_order = [parent, take_profit, stop_loss]

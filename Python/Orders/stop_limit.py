@@ -26,11 +26,11 @@ class TestApp(EClient, EWrapper):
         # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#stop-limit-order
         # Building the Order with required attributes
         order = Order()
-        order.action = "BUY" # Identifies the side, BUY in this case
-        order.orderType = "STP LMT" # The order type (obviously)
-        order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        order.auxPrice = 198.0 # The stop price - if attained/penetrated, a market order is submitted
-        order.lmtPrice = 197.0 # The limit price that you will accept (or better)
+        order.action = "BUY"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        order.orderType = "STP LMT"  # Type of order such as Market, Limit, Stop, etc.
+        order.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        order.auxPrice = 198.0  # Auxiliary price for stop orders, trailing stop orders, etc.
+        order.lmtPrice = 197.0  # Limit price for limit orders or stop-limit orders
         
         # Place Order
         self.placeOrder(self.nextId(), contract, order)

@@ -34,21 +34,21 @@ class TestApp(EClient, EWrapper):
         # The parent order
         parent = Order()
         parent.orderId = self.nextId()
-        parent.action = "BUY" # Identifies the side
-        parent.orderType = "MKT" # The order type
-        parent.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        parent.transmit = False # Specifies whether the order will be transmitted by TWS
+        parent.action = "BUY"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        parent.orderType = "MKT"  # Type of order such as Market, Limit, Stop, etc.
+        parent.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        parent.transmit = False  # If false, the order is created but not transmitted to market
 
         # Hedged child order
         hedge_child = Order()
         hedge_child.orderId = parent.orderId + 1 
-        hedge_child.parentId = parent.orderId # Parent order ID
-        hedge_child.action = "SELL" # Identifies the side
-        hedge_child.orderType = "MKT" # The order type
-        hedge_child.totalQuantity = 0 # The number of positions being bought/sold (Qty in TWS GUI)
-        hedge_child.hedgeType = "P" # 'D' - delta, 'B' - beta, 'F' - FX, 'P' - pair
-        hedge_child.hedgeParam = "5" # 'beta=X' value for beta hedge, 'ratio=Y' for pair hedge
-        hedge_child.transmit = True # Specifies whether the order will be transmitted by TWS
+        hedge_child.parentId = parent.orderId  # ID of the parent order for bracket, trailing stop, or other attached orders
+        hedge_child.action = "SELL"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        hedge_child.orderType = "MKT"  # Type of order such as Market, Limit, Stop, etc.
+        hedge_child.totalQuantity = 0  # Total number of units (shares, contracts) to be bought or sold
+        hedge_child.hedgeType = "P"  # Type of hedge for the order (delta, beta, FX, or pair)
+        hedge_child.hedgeParam = "5"  # Parameter for the hedge order (e.g., beta value or hedge ratio)
+        hedge_child.transmit = True  # If false, the order is created but not transmitted to market
         
         self.placeOrder(parent.orderId, parent_contract, parent)
         time.sleep(.2) # Error "10006: Missing parent order" may be triggered if dont include small delay

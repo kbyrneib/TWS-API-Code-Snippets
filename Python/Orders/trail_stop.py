@@ -26,9 +26,9 @@ class TestApp(EClient, EWrapper):
         # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#trailing-stop-order
         # Building the Order with required attributes
         order = Order()
-        order.action = "BUY" # Identifies the side, BUY in this case
-        order.orderType = "TRAIL" # The order type (obviously)
-        order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
+        order.action = "BUY"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        order.orderType = "TRAIL"  # Type of order such as Market, Limit, Stop, etc.
+        order.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
 
         # Specify one of:
         order.trailingPercent = 1.0 # Specifies the trailing amount as a percentage of the market price e.g. 0.50 = 0.50%

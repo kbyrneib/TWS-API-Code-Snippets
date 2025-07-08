@@ -26,10 +26,10 @@ class TestApp(EClient, EWrapper):
         # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#limit-on-close-orders
         # Building the Order with required attributes
         order = Order()
-        order.action = "BUY" # Identifies the side, BUY in this case
-        order.orderType = "LOC" # The order type (obviously)
-        order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        order.lmtPrice = 198.0 # The limit price that you will accept (or better)
+        order.action = "BUY"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        order.orderType = "LOC"  # Type of order such as Market, Limit, Stop, etc.
+        order.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        order.lmtPrice = 198.0  # Limit price for limit orders or stop-limit orders
         
         # Place Order
         self.placeOrder(self.nextId(), contract, order)

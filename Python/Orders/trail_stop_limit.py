@@ -26,13 +26,13 @@ class TestApp(EClient, EWrapper):
         # API Link: 
         # Building the Order with required attributes
         order = Order()
-        order.action = "BUY" # Identifies the side, BUY in this case
-        order.orderType = "TRAIL LIMIT" # The order type (obviously)
-        order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        order.trailStopPrice = 200.5 # Required - Trigger price beyond which trailing behavior will begin.
+        order.action = "BUY"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        order.orderType = "TRAIL LIMIT"  # Type of order such as Market, Limit, Stop, etc.
+        order.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        order.trailStopPrice = 200.5  # Stop price for trailing stop orders that adjusts as market price changes
 
         # Specify one of:
-        order.trailingPercent = 1.0 # Specifies the trailing amount as a percentage of the market price e.g. 0.50 = 0.50%
+        order.trailingPercent = 1.0  # Percentage distance for trailing stop orders relative to market price
         # order.auxPrice = 1.0 # Specifies the trailing amount as an absolute value in units of the instruments currency e.g. 1.0 USD
         
         # Specify one of:

@@ -29,10 +29,10 @@ class TestApp(EClient, EWrapper):
         # API Link: https://www.interactivebrokers.com/campus/ibkr-api-page/order-types/#market-if-touched-order
         # Building the Order with required attributes
         order = Order()
-        order.action = "SELL" # Identifies the side
-        order.orderType = "MIT" # The order type (obviously)
-        order.totalQuantity = 1 # The number of positions being bought/sold (Qty in TWS GUI)
-        order.auxPrice = 197.3 # The trigger price - if touched, a market order is submitted
+        order.action = "SELL"  # Specifies whether the order is to buy or sell (e.g., 'BUY', 'SELL')
+        order.orderType = "MIT"  # Type of order such as Market, Limit, Stop, etc.
+        order.totalQuantity = 1  # Total number of units (shares, contracts) to be bought or sold
+        order.auxPrice = 197.3  # Auxiliary price for stop orders, trailing stop orders, etc.
         
         # Place Order
         self.placeOrder(self.nextId(), contract, order)
