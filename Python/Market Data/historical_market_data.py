@@ -16,30 +16,14 @@ class TestApp(EClient, EWrapper):
         return self.orderId
 
     def start(self):
-        # Building a contract
-        contract = Contract()
-        contract.symbol = "IBM"
-        contract.secType = "STK"
-        contract.exchange = "SMART"
-        contract.currency = "USD"
-
-        # Requesting the earliest data point for IBM stock
-        self.reqHeadTimeStamp(self.nextId(), contract, "TRADES", 1, 2)
-
-    def headTimestamp(self, reqId, headTimestamp):
-        # Getting earliest point that IBM stock was traded
-        earliest = str(datetime.datetime.fromtimestamp(int(headTimestamp)))
-
-        # Requesting head time stamp counts as an ongoing historical data request so need to cancel
-        self.cancelHeadTimeStamp(reqId)
-
         # Making the historical request
         contract = Contract()
-        contract.symbol = "IBM"
+        contract.symbol = "TSLA"
         contract.secType = "STK"
         contract.exchange = "SMART"
         contract.currency = "USD"
-        self.reqHistoricalData(self.nextId(), contract, "", "45 Y", "1 month", "TRADES", 1, 1, False, [])
+
+        self.reqHistoricalData(self.nextId(), contract, "", "1 D", "1 day", "TRADES", 1, 1, False, [])
 
     def historicalData(self, reqId, bar):
         print(reqId, bar)
