@@ -16,14 +16,14 @@ class TestApp(EClient, EWrapper):
         return self.orderId
 
     def start(self):
-        # Making the historical request
+        # Building a contract
         contract = Contract()
-        contract.symbol = "TSLA"
+        contract.symbol = "IBM"
         contract.secType = "STK"
         contract.exchange = "SMART"
         contract.currency = "USD"
 
-        self.reqHistoricalData(self.nextId(), contract, "", "1 D", "1 day", "TRADES", 1, 1, False, [])
+        self.reqHistoricalData(self.nextId(), contract, "", "1 Y", "1 month", "TRADES", 1, 1, False, [])
 
     def historicalData(self, reqId, bar):
         print(reqId, bar)
